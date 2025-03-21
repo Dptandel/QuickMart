@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "42700348979",
+    "project_id": "quickmart-82cc5",
+    "storage_bucket": "quickmart-82cc5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42700348979:android:14c1b7a700872206ec4d46",
+        "android_client_info": {
+          "package_name": "com.app.quickmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDps0KdFATnjSjL362w_izqA2JsAyJMmUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
