@@ -60,4 +60,10 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.0")
+
+    //Dot Indicator
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
 }

@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.app.quickmart" />
-                  <option name="mobileSdkAppId" value="1:914630989165:android:0e4cec8ffbb7c4ff6d7664" />
-                  <option name="projectId" value="stylehub-a1d60" />
-                  <option name="projectNumber" value="914630989165" />
+                  <option name="mobileSdkAppId" value="1:42700348979:android:14c1b7a700872206ec4d46" />
+                  <option name="projectId" value="quickmart-82cc5" />
+                  <option name="projectNumber" value="42700348979" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
