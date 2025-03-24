@@ -44,7 +44,7 @@ fun BannerView(modifier: Modifier = Modifier) {
         val pagerState = rememberPagerState(0) {
             bannerList.size
         }
-        HorizontalPager(state = pagerState, pageSpacing = 24.dp) {
+        HorizontalPager(state = pagerState, pageSpacing = 16.dp) {
             AsyncImage(
                 model = bannerList.get(it),
                 contentDescription = "Banner",

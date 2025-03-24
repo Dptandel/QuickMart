@@ -19,6 +19,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -58,30 +59,8 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController) {
     )
 
     var selectedIndex by remember {
-        mutableStateOf(0)
+        mutableIntStateOf(0)
     }
-    /*Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Home Screen")
-
-        Spacer(modifier = Modifier.height(20.dp))
-
-        Button(onClick = {
-            Firebase.auth.signOut()
-            navController.navigate("auth") {
-                popUpTo("home") { inclusive = true }
-            }
-        }) {
-            Text(
-                text = "Logout"
-            )
-        }
-    }*/
 
     Scaffold(
         bottomBar = {
@@ -103,7 +82,7 @@ fun HomeScreen(modifier: Modifier = Modifier, navController: NavController) {
             }
         }
     ) {
-        ContentScreen(modifier = modifier.padding(it), selectedIndex)
+        ContentScreen(modifier = Modifier.padding(it), selectedIndex)
     }
 }
 

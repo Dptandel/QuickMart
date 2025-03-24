@@ -53,7 +53,7 @@ fun CategoryView(modifier: Modifier = Modifier) {
     }
 
     LazyRow(
-        horizontalArrangement = Arrangement.spacedBy(20.dp)
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(categoriesList.value) { item ->
             CategoryItem(category = item)
