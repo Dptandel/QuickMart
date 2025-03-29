@@ -32,6 +32,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.app.quickmart.components.ProductItemView
 import com.app.quickmart.models.ProductModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -53,7 +54,7 @@ fun CategoryProductsPage(modifier: Modifier = Modifier, categoryId: String) {
                     val resultList = it.result.documents.mapNotNull { document ->
                         document.toObject(ProductModel::class.java)
                     }
-                    productsList.value = resultList
+                    productsList.value = resultList.plus(resultList).plus(resultList).plus(resultList).plus(resultList)
                 }
             }
     }
@@ -64,71 +65,12 @@ fun CategoryProductsPage(modifier: Modifier = Modifier, categoryId: String) {
             .padding(8.dp)
     ) {
         items(productsList.value.chunked(2)) { rowItems ->
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 8.dp),
-                horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
-            ) {
-                rowItems.forEach { item ->
-                    OutlinedCard(
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.surface,
-                        ),
-                        border = BorderStroke(1.dp, Color.LightGray),
-                        modifier = Modifier
-                            .weight(1f)
-                            .aspectRatio(1f), // Make cards square for consistent size
-                        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
-                        shape = RoundedCornerShape(8.dp)
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(16.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            AsyncImage(
-                                model = item.images[0],
-                                contentDescription = "Product Image",
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .weight(1f) // Allow image to take available space
-                                    .clip(RoundedCornerShape(8.dp)),
-                                contentScale = ContentScale.Inside
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Text(
-                                text = item.name,
-                                fontWeight = FontWeight.SemiBold,
-                                fontSize = 16.sp,
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier.fillMaxWidth()
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Text(
-                                    text = "₹${item.price}",
-                                    fontSize = 16.sp,
-                                    color = MaterialTheme.colorScheme.primary,
-                                    modifier = Modifier.weight(1f),
-                                    textAlign = TextAlign.End
-                                )
-
-                                Spacer(modifier = Modifier.width(8.dp))
-
-                                Text(
-                                    text = "₹${item.mrp}",
-                                    fontSize = 14.sp,
-                                    color = Color.Gray,
-                                    modifier = Modifier.weight(1f),
-                                    textAlign = TextAlign.Start,
-                                    textDecoration = TextDecoration.LineThrough
-                                )
-                            }
-                        }
-                    }
+            Row {
+                rowItems.forEach {
+                    ProductItemView(product = it, modifier = Modifier.weight(1f))
+                }
+                if(rowItems.size == 1) {
+                    Spacer(modifier = Modifier.weight(1f))
                 }
             }
         }
