@@ -54,7 +54,7 @@ fun CategoryProductsPage(modifier: Modifier = Modifier, categoryId: String) {
                     val resultList = it.result.documents.mapNotNull { document ->
                         document.toObject(ProductModel::class.java)
                     }
-                    productsList.value = resultList.plus(resultList).plus(resultList).plus(resultList).plus(resultList)
+                    productsList.value = resultList
                 }
             }
     }
