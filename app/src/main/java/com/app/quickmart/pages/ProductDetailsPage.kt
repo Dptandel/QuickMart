@@ -71,7 +71,7 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
     }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .padding(16.dp)
             .verticalScroll(rememberScrollState())
@@ -102,19 +102,17 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
             )
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Text(
             text = product.name,
             fontWeight = FontWeight.Bold,
-            fontSize = 22.sp,
-            modifier = Modifier.padding(8.dp)
+            fontSize = 22.sp
         )
 
         Row(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
@@ -139,8 +137,6 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
             }
         }
 
-        Spacer(modifier = Modifier.height(8.dp))
-
         Button(
             onClick = {},
             modifier = Modifier
@@ -151,11 +147,11 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
                 containerColor = MaterialTheme.colorScheme.primary
             )
         ) {
-            Text(text = "Add to Cart", style = TextStyle(fontSize = 14.sp, color = Color.White))
+            Text(text = "Add to Cart", style = TextStyle(fontSize = 16.sp, color = Color.White))
             Spacer(modifier = Modifier.width(8.dp))
             Image(
                 imageVector = Icons.Default.ShoppingCart,
-                modifier = Modifier.size(20.dp),
+                modifier = Modifier.size(24.dp),
                 colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Color.White),
                 contentDescription = "Cart"
             )
@@ -164,40 +160,45 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Product Details",
+            text = "Product Details :",
             fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(8.dp)
+            fontWeight = FontWeight.Bold
         )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         Text(
             text = product.description,
-            fontSize = 16.sp,
-            modifier = Modifier.padding(8.dp)
+            fontSize = 16.sp
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         if (product.otherDetails.isNotEmpty()) {
             Text(
-                text = "Other Details",
+                text = "Other Details :",
                 fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(8.dp)
+                fontWeight = FontWeight.Bold
             )
 
             product.otherDetails.forEach { (key, value) ->
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(4.dp)
+                        .padding(top = 8.dp)
                 ) {
                     Text(
-                        text = "$key: ",
+                        text = key,
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        modifier = Modifier.weight(0.4f)
                     )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = value, fontSize = 16.sp)
+                    Text(text = ":", modifier = Modifier.weight(0.1f))
+                    Text(
+                        text = value,
+                        fontSize = 16.sp,
+                        modifier = Modifier.weight(0.5f)
+                    )
                 }
             }
         }
