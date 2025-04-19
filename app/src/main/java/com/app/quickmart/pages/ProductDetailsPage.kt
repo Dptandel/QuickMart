@@ -35,12 +35,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.app.quickmart.AppUtils
 import com.app.quickmart.models.ProductModel
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -53,6 +55,8 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
     var product by remember {
         mutableStateOf(ProductModel())
     }
+
+    var context = LocalContext.current
 
     LaunchedEffect(key1 = Unit) {
         Firebase.firestore.collection("data")
@@ -138,7 +142,9 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
         }
 
         Button(
-            onClick = {},
+            onClick = {
+                AppUtils.addItemToCart(context, productId)
+            },
             modifier = Modifier
                 .height(50.dp)
                 .fillMaxWidth()

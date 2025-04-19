@@ -2,7 +2,6 @@ package com.app.quickmart.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -33,11 +33,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.app.quickmart.AppUtils
 import com.app.quickmart.GlobalNavigation
 import com.app.quickmart.models.ProductModel
 
 @Composable
 fun ProductItemView(modifier: Modifier = Modifier, product: ProductModel) {
+
+    var context = LocalContext.current
+
     Card(
         modifier = modifier
             .padding(8.dp)
@@ -98,7 +102,9 @@ fun ProductItemView(modifier: Modifier = Modifier, product: ProductModel) {
             Spacer(modifier = Modifier.height(12.dp))
 
             Button(
-                onClick = {},
+                onClick = {
+                    AppUtils.addItemToCart(context, product.id)
+                },
                 modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth()
