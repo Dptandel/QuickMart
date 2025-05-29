@@ -40,7 +40,7 @@ import com.app.quickmart.models.ProductModel
 @Composable
 fun ProductItemView(modifier: Modifier = Modifier, product: ProductModel) {
 
-    var context = LocalContext.current
+    val context = LocalContext.current
 
     Card(
         modifier = modifier
@@ -103,7 +103,7 @@ fun ProductItemView(modifier: Modifier = Modifier, product: ProductModel) {
 
             Button(
                 onClick = {
-                    AppUtils.addItemToCart(context, product.id)
+                    AppUtils.addToCart(context, product.id)
                 },
                 modifier = Modifier
                     .height(50.dp)

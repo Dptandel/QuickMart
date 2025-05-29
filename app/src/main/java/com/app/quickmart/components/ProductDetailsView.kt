@@ -1,4 +1,4 @@
-package com.app.quickmart.pages
+package com.app.quickmart.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -56,7 +56,7 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
         mutableStateOf(ProductModel())
     }
 
-    var context = LocalContext.current
+    val context = LocalContext.current
 
     LaunchedEffect(key1 = Unit) {
         Firebase.firestore.collection("data")
@@ -66,7 +66,7 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    var result = it.result.toObject(ProductModel::class.java)
+                    val result = it.result.toObject(ProductModel::class.java)
                     if (result != null) {
                         product = result
                     }
@@ -143,7 +143,7 @@ fun ProductDetailsPage(modifier: Modifier = Modifier, productId: String) {
 
         Button(
             onClick = {
-                AppUtils.addItemToCart(context, productId)
+                AppUtils.addToCart(context, productId)
             },
             modifier = Modifier
                 .height(50.dp)
