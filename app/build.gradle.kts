@@ -66,4 +66,7 @@ dependencies {
 
     //Dot Indicator
     implementation("com.tbuonomo:dotsindicator:5.1.0")
+
+    //Razorpay
+    implementation("com.razorpay:checkout:1.6.33")
 }

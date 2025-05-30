@@ -12,8 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.app.quickmart.ui.theme.QuickMartTheme
+import com.razorpay.PaymentResultListener
 
-class MainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity(), PaymentResultListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,5 +25,13 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onPaymentSuccess(p0: String?) {
+        AppUtils.showToast(this, "Payment Success!!!")
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?) {
+        AppUtils.showToast(this, "Payment Failed!!!")
     }
 }

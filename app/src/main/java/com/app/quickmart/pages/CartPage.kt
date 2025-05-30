@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.app.quickmart.GlobalNavigation
 import com.app.quickmart.components.CartItemView
 import com.app.quickmart.models.UserModel
 import com.google.firebase.Firebase
@@ -32,7 +34,7 @@ fun CartPage(modifier: Modifier = Modifier) {
     }
 
     DisposableEffect(key1 = Unit) {
-        var listener = Firebase.firestore.collection("users")
+        val listener = Firebase.firestore.collection("users")
             .document(FirebaseAuth.getInstance().currentUser?.uid!!)
             .addSnapshotListener { it, _ ->
                 if (it != null) {
@@ -68,11 +70,13 @@ fun CartPage(modifier: Modifier = Modifier) {
             }
         }
 
-        Button(onClick = {
-
-        }, modifier = modifier
-            .fillMaxWidth()
-            .height(50.dp)) {
+        Button(
+            onClick = {
+                GlobalNavigation.navController.navigate("checkout")
+            }, modifier = modifier
+                .fillMaxWidth()
+                .height(50.dp)
+        ) {
             Text(text = "Checkout", fontSize = 18.sp)
         }
     }

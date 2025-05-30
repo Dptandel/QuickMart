@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -23,6 +25,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,14 +61,23 @@ fun LoginScreen(
         modifier = modifier
             .fillMaxSize()
             .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.login),
+            contentDescription = "Login",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp)
+        )
+
+        Spacer(modifier = Modifier.height(10.dp))
+
         Text(
-            text = "Welcome back!",
+            text = "Login",
             modifier = Modifier.fillMaxWidth(),
             style = TextStyle(
-                fontSize = 25.sp,
+                fontSize = 45.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = FontWeight.SemiBold,
             )
@@ -73,22 +86,12 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
-            text = "SignIn to your account",
+            text = "Continue your shopping journey with us.",
             modifier = Modifier.fillMaxWidth(),
             style = TextStyle(
                 fontSize = 18.sp,
                 fontFamily = FontFamily.Monospace,
             )
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.login),
-            contentDescription = "Login",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -101,7 +104,9 @@ fun LoginScreen(
             label = {
                 Text(text = "Email Address")
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            shape = CircleShape,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Next)
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -115,6 +120,8 @@ fun LoginScreen(
                 Text(text = "Password")
             },
             modifier = Modifier.fillMaxWidth(),
+            shape = CircleShape,
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text, imeAction = ImeAction.Next),
             visualTransformation = PasswordVisualTransformation()
         )
 

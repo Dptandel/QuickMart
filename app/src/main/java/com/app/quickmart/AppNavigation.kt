@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.app.quickmart.pages.CategoryProductsPage
 import com.app.quickmart.components.ProductDetailsPage
+import com.app.quickmart.pages.CheckoutPage
 import com.app.quickmart.screens.AuthScreen
 import com.app.quickmart.screens.HomeScreen
 import com.app.quickmart.screens.LoginScreen
@@ -50,6 +51,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         composable("product-details/{productId}") {
             val productId = it.arguments?.getString("productId")
             ProductDetailsPage(modifier, productId?:"")
+        }
+
+        composable("checkout") {
+            CheckoutPage(modifier)
         }
     }
 }
