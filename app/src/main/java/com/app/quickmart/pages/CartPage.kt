@@ -1,6 +1,8 @@
 package com.app.quickmart.pages
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,17 +54,19 @@ fun CartPage(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
     ) {
         Text(
-            text = "Your Cart", style = TextStyle(
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold
-            )
+            text = "Your Cart",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
         LazyColumn(
-            modifier = modifier.weight(1f)
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .weight(1f)
         ) {
             items(userModel.value.cartItems.toList(), key = { it.first }) { (productId, qty) ->
                 CartItemView(productId = productId, qty = qty)

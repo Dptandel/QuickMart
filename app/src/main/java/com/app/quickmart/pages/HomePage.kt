@@ -30,13 +30,20 @@ fun HomePage(modifier: Modifier = Modifier) {
             .padding(16.dp)
     ) {
         HeaderView(modifier)
+
         Spacer(modifier = Modifier.height(10.dp))
+
         BannerView(modifier = Modifier.height(250.dp))
-        Text(text = "Categories", style = TextStyle(
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold
-        ))
+
+        Text(
+            text = "Categories", style = TextStyle(
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+        )
+
         Spacer(modifier = Modifier.height(10.dp))
+
         CategoryView()
     }
 }
