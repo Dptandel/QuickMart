@@ -72,7 +72,12 @@ fun CartPage(modifier: Modifier = Modifier) {
                 CartItemView(productId = productId, qty = qty)
             }
         }
+    }
 
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.Bottom
+    ) {
         Button(
             onClick = {
                 GlobalNavigation.navController.navigate("checkout")

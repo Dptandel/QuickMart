@@ -49,7 +49,7 @@ fun HeaderView(modifier: Modifier = Modifier) {
             Text(
                 text = name,
                 style = TextStyle(
-                    fontSize = 18.sp,
+                    fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
             )
