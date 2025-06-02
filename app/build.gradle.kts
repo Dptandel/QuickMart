@@ -69,4 +69,8 @@ dependencies {
 
     //Razorpay
     implementation("com.razorpay:checkout:1.6.33")
+
+    //ConstraintLayout
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")
+
 }
