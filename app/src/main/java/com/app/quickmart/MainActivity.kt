@@ -1,5 +1,6 @@
 package com.app.quickmart
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,10 +29,21 @@ class MainActivity : ComponentActivity(), PaymentResultListener {
     }
 
     override fun onPaymentSuccess(p0: String?) {
-        AppUtils.showToast(this, "Payment Success!!!")
+        AppUtils.showToast(this, "Payment Success")
+        AppUtils.clearCartAndAddToOrders()
+        val dialog = AlertDialog.Builder(this)
+        dialog.setTitle("Payment Successful")
+            .setMessage("Your order has been placed successfully.")
+            .setPositiveButton("OK") {_,_ ->
+                val navController = GlobalNavigation.navController
+                navController.popBackStack()
+                navController.navigate("home")
+            }
+            .setCancelable(false)
+            .show()
     }
 
     override fun onPaymentError(p0: Int, p1: String?) {
-        AppUtils.showToast(this, "Payment Failed!!!")
+        AppUtils.showToast(this, "Payment Failed")
     }
 }

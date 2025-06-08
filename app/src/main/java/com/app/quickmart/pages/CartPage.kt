@@ -63,29 +63,43 @@ fun CartPage(modifier: Modifier = Modifier) {
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
-        LazyColumn(
-            modifier = Modifier
-                .padding(top = 16.dp)
-                .weight(1f)
-        ) {
-            items(userModel.value.cartItems.toList(), key = { it.first }) { (productId, qty) ->
-                CartItemView(productId = productId, qty = qty)
+        if (userModel.value.cartItems.isNotEmpty()) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(top = 16.dp)
+                    .weight(1f)
+            ) {
+                items(userModel.value.cartItems.toList(), key = { it.first }) { (productId, qty) ->
+                    CartItemView(productId = productId, qty = qty)
+                }
+            }
+        } else {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(text = "Your cart is empty", fontSize = 22.sp)
             }
         }
     }
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp),
-        verticalArrangement = Arrangement.Bottom
-    ) {
-        Button(
-            onClick = {
-                GlobalNavigation.navController.navigate("checkout")
-            }, modifier = modifier
-                .fillMaxWidth()
-                .height(50.dp)
+    if (userModel.value.cartItems.isNotEmpty()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Bottom
         ) {
-            Text(text = "Checkout", fontSize = 18.sp)
+            Button(
+                onClick = {
+                    GlobalNavigation.navController.navigate("checkout")
+                }, modifier = modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(text = "Checkout", fontSize = 18.sp)
+            }
         }
     }
 }

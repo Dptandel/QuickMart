@@ -1,5 +1,6 @@
 package com.app.quickmart
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -60,5 +61,6 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 }
 
 object GlobalNavigation {
+    @SuppressLint("StaticFieldLeak")
     lateinit var navController: NavHostController
 }

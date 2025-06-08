@@ -68,7 +68,7 @@ dependencies {
     implementation("com.tbuonomo:dotsindicator:5.1.0")
 
     //Razorpay
-    implementation("com.razorpay:checkout:1.6.33")
+    implementation("com.razorpay:checkout:1.6.41")
 
     //ConstraintLayout
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.1")

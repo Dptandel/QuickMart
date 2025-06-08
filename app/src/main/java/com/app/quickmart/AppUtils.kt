@@ -4,13 +4,16 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.app.quickmart.models.OrderModel
 import com.app.quickmart.pages.CheckoutPage
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
 import com.razorpay.Checkout
 import org.json.JSONObject
+import java.util.UUID
 
 object AppUtils {
     fun showToast(context: Context, message: String) {
@@ -64,6 +67,34 @@ object AppUtils {
                         showToast(context, "Failed to remove item from cart")
                     }
                 }
+            }
+        }
+    }
+
+    fun clearCartAndAddToOrders() {
+        val userDoc = Firebase.firestore.collection("users")
+            .document(FirebaseAuth.getInstance().currentUser?.uid!!)
+
+        userDoc.get().addOnCompleteListener {
+            if (it.isSuccessful) {
+                val currentCart = it.result.get("cartItems") as? Map<String, Long> ?: emptyMap()
+                val order = OrderModel(
+                    id = "ORD_" + UUID.randomUUID().toString().replace("-", "").take(10)
+                        .uppercase(),
+                    userId = FirebaseAuth.getInstance().currentUser?.uid!!,
+                    date = Timestamp.now(),
+                    items = currentCart,
+                    status = "Ordered",
+                    address = it.result.get("address") as? String ?: ""
+                )
+
+                Firebase.firestore.collection("orders")
+                    .document(order.id).set(order)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            userDoc.update("cartItems", FieldValue.delete())
+                        }
+                    }
             }
         }
     }
